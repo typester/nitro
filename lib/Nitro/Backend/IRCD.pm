@@ -40,7 +40,6 @@ sub run {
     my $session = POE::Session->create(
         object_states => [ $self => {
             _start   => 'poe_start',
-            _default => 'poe_default',
         }],
     );
 }
@@ -57,15 +56,6 @@ sub poe_start {
 
     $ircd->add_auth(mask => '*@*');
     $ircd->add_listener( port => $self->port );
-}
-
-sub poe_default {
-    my $self = $_[OBJECT];
-    my @args = @_[ARG0 .. $#_];
-
-    use YAML;
-    warn $self;
-    warn Dump \@args;
 }
 
 1;
