@@ -1,0 +1,34 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+use utf8;
+use lib 'lib';
+
+use Getopt::Long;
+use Pod::Usage;
+
+use Nitro;
+
+GetOptions(
+    \my %option,
+    qw/config=s/
+);
+pod2usage(-1) unless $option{config};
+
+Nitro->new(%option)->run;
+
+__END__
+
+=head1 NAME
+
+nitro -
+
+=head1 SYNOPSIS
+
+    nitro -c config.pl
+
+=head1 AUTHOR
+
+Daisuke Murase
+
